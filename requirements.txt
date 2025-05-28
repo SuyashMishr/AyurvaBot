@@ -1,0 +1,7 @@
+numpy
+pandas
+PyPDF2
+matplotlib
+gradio
+transformers
+torch

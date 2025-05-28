@@ -1,7 +1,6 @@
-numpy
-pandas
-PyPDF2
-matplotlib
-gradio
-transformers
-torch
+gradio>=4.0.0
+transformers>=4.30.0
+torch>=2.0.0
+sentence-transformers>=2.2.0
+faiss-cpu>=1.7.0
+numpy>=1.21.0

@@ -12,9 +12,9 @@ import sys
 # Add src directory to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
-from rag_system import RAGSystem
-from response_generator import ResponseGenerator
-from feedback_manager import FeedbackManager
+from src.rag_system import RAGSystem
+from src.response_generator import ResponseGenerator
+from src.feedback_manager import FeedbackManager
 from config import Config
 
 def main():

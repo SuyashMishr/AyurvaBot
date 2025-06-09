@@ -31,4 +31,4 @@ AyurvaBot provides information about Ayurvedic medicine based on standard treatm
 
 ## Credits
 
-Created by [Your Name]
+Created by [Suyash Mishra]

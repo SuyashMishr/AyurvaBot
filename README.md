@@ -1,6 +1,10 @@
 # Enhanced AyurvaBot
 
 An intelligent Ayurvedic medicine assistant using fine-tuned DistilBERT with FAISS vector search and web-enhanced RAG (Retrieval Augmented Generation).
+<img width="1470" alt="Screenshot 2025-06-15 at 9 13 47 AM" src="https://github.com/user-attachments/assets/fdac4449-0886-4ad5-a7ce-5109c6a3f4ef" />
+![Screenshot 2025-06-15 at 9 13 37 AM](https://github.com/user-attachments/assets/0d0b699b-5c09-4528-a066-595f3ae85d05)
+
+<img width="1470" alt="Screenshot 2025-06-15 at 9 14 00 AM" src="https://github.com/user-attachments/assets/ca61fc71-5bd0-4c53-93c8-ee52da1d3d1c" />
 
 ## Features
 

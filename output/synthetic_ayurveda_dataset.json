@@ -1,0 +1,82 @@
+[
+  {
+    "question": "What is Ayurveda?",
+    "answer": "Ayurveda is an ancient Indian system of medicine that has been practiced for thousands of years. It focuses on creating harmony between the body, mind, and spirit, using a holistic approach to physical and mental health.",
+    "context": "Ayurveda is an ancient Indian system of medicine that has been practiced for thousands of years. It focuses on creating harmony between the body, mind, and spirit, using a holistic approach to physical and mental health. The term Ayurveda is derived from the Sanskrit words 'ayur' meaning life and 'veda' meaning knowledge or science."
+  },
+  {
+    "question": "What are the three doshas?",
+    "answer": "The three doshas in Ayurveda are Vata, Pitta, and Kapha. These are biological energies found throughout the human body and mind that govern all physical and mental processes.",
+    "context": "The three doshas in Ayurveda are Vata, Pitta, and Kapha. These are biological energies found throughout the human body and mind that govern all physical and mental processes. Each person has a unique proportion of these three forces that shapes their nature."
+  },
+  {
+    "question": "What is Vata dosha?",
+    "answer": "Vata dosha represents the elements of space and air. It governs movement, breathing, natural urges, and transformation of tissues. When in balance, it promotes creativity and flexibility.",
+    "context": "Vata dosha represents the elements of space and air. It governs movement, breathing, natural urges, and transformation of tissues. When in balance, it promotes creativity and flexibility. People with predominant Vata tend to be thin, light, enthusiastic, energetic, and changeable."
+  },
+  {
+    "question": "What is Pitta dosha?",
+    "answer": "Pitta dosha embodies the elements of fire and water. It governs digestion, metabolism, and transformation. When in balance, it promotes understanding and intelligence.",
+    "context": "Pitta dosha embodies the elements of fire and water. It governs digestion, metabolism, and transformation. When in balance, it promotes understanding and intelligence. People with predominant Pitta tend to be of medium build, warm, and determined."
+  },
+  {
+    "question": "What is Kapha dosha?",
+    "answer": "Kapha dosha represents the elements of earth and water. It governs structure, fluid balance, and lubrication. When in balance, it promotes calmness, forgiveness, and love.",
+    "context": "Kapha dosha represents the elements of earth and water. It governs structure, fluid balance, and lubrication. When in balance, it promotes calmness, forgiveness, and love. People with predominant Kapha tend to have a solid, strong build and are stable and grounded."
+  },
+  {
+    "question": "What is Panchakarma?",
+    "answer": "Panchakarma is a five-fold detoxification treatment in Ayurveda that eliminates toxins from the body. It includes Vamana (therapeutic vomiting), Virechana (purgation), Basti (enema), Nasya (nasal administration), and Raktamokshana (bloodletting).",
+    "context": "Panchakarma is a five-fold detoxification treatment in Ayurveda that eliminates toxins from the body. It includes Vamana (therapeutic vomiting), Virechana (purgation), Basti (enema), Nasya (nasal administration), and Raktamokshana (bloodletting). These procedures help restore the balance of doshas and rejuvenate the body and mind."
+  },
+  {
+    "question": "What is Ashwagandha used for in Ayurveda?",
+    "answer": "Ashwagandha is an adaptogenic herb used in Ayurveda to reduce stress and anxiety, improve energy levels, and enhance concentration. It is particularly beneficial for balancing Vata dosha.",
+    "context": "Ashwagandha is an adaptogenic herb used in Ayurveda to reduce stress and anxiety, improve energy levels, and enhance concentration. It is particularly beneficial for balancing Vata dosha. The herb is often used in the form of powder or extract and is considered a Rasayana (rejuvenative) that promotes longevity and overall wellness."
+  },
+  {
+    "question": "What is Triphala?",
+    "answer": "Triphala is a traditional Ayurvedic formulation consisting of three fruits: Amalaki (Emblica officinalis), Bibhitaki (Terminalia bellirica), and Haritaki (Terminalia chebula). It is primarily used for digestive health and detoxification.",
+    "context": "Triphala is a traditional Ayurvedic formulation consisting of three fruits: Amalaki (Emblica officinalis), Bibhitaki (Terminalia bellirica), and Haritaki (Terminalia chebula). It is primarily used for digestive health and detoxification. Triphala is also known for its antioxidant properties and is used for eye care, skin health, and as a gentle laxative."
+  },
+  {
+    "question": "How does Ayurveda treat fever?",
+    "answer": "In Ayurveda, fever is seen as a sign of increased Pitta dosha. Treatment focuses on cooling herbs like Guduchi, Neem, and Sandalwood, along with dietary adjustments, adequate hydration, and rest.",
+    "context": "In Ayurveda, fever is seen as a sign of increased Pitta dosha. Treatment focuses on cooling herbs like Guduchi, Neem, and Sandalwood, along with dietary adjustments, adequate hydration, and rest. Ayurvedic practitioners also recommend fasting or eating light, easily digestible foods during fever to reduce the digestive burden on the body."
+  },
+  {
+    "question": "What is the Ayurvedic approach to heart health?",
+    "answer": "The Ayurvedic approach to heart health involves balancing the doshas, particularly Pitta, using herbs like Arjuna, Guggulu, and Rose, along with a heart-healthy diet, stress management through meditation, and regular exercise.",
+    "context": "The Ayurvedic approach to heart health involves balancing the doshas, particularly Pitta, using herbs like Arjuna, Guggulu, and Rose, along with a heart-healthy diet, stress management through meditation, and regular exercise. Ayurveda also emphasizes emotional wellbeing as crucial for heart health, as negative emotions are believed to directly impact the heart."
+  },
+  {
+    "question": "What are the principles of Ayurvedic diet?",
+    "answer": "The principles of Ayurvedic diet include eating according to one's dosha constitution, including all six tastes (sweet, sour, salty, pungent, bitter, astringent) in meals, eating fresh and seasonal foods, and practicing mindful eating.",
+    "context": "The principles of Ayurvedic diet include eating according to one's dosha constitution, including all six tastes (sweet, sour, salty, pungent, bitter, astringent) in meals, eating fresh and seasonal foods, and practicing mindful eating. Ayurveda also recommends having the largest meal at midday when digestive fire (Agni) is strongest and avoiding incompatible food combinations."
+  },
+  {
+    "question": "What is Shirodhara?",
+    "answer": "Shirodhara is an Ayurvedic therapy where warm oil is continuously poured over the forehead (third eye area). It is particularly effective for reducing stress, anxiety, and insomnia, and balancing the nervous system.",
+    "context": "Shirodhara is an Ayurvedic therapy where warm oil is continuously poured over the forehead (third eye area). It is particularly effective for reducing stress, anxiety, and insomnia, and balancing the nervous system. The treatment induces a deep state of relaxation, helps enhance blood circulation to the brain, and improves mental clarity and cognitive functions."
+  },
+  {
+    "question": "How does Ayurveda view digestion?",
+    "answer": "In Ayurveda, digestion is considered the cornerstone of health, governed by Agni (digestive fire). Proper digestion prevents the formation of Ama (toxins) and ensures the body receives proper nutrition.",
+    "context": "In Ayurveda, digestion is considered the cornerstone of health, governed by Agni (digestive fire). Proper digestion prevents the formation of Ama (toxins) and ensures the body receives proper nutrition. Many Ayurvedic practices focus on maintaining healthy digestion, including specific dietary guidelines, spices to enhance Agni, and proper food combinations."
+  },
+  {
+    "question": "What is the role of meditation in Ayurveda?",
+    "answer": "In Ayurveda, meditation is a key practice for maintaining mental balance, reducing stress, and enhancing self-awareness. It is considered essential for spiritual growth and for balancing all three doshas, particularly Vata.",
+    "context": "In Ayurveda, meditation is a key practice for maintaining mental balance, reducing stress, and enhancing self-awareness. It is considered essential for spiritual growth and for balancing all three doshas, particularly Vata. Regular meditation practice is believed to improve concentration, promote positive thoughts, and contribute to overall physical and mental wellbeing."
+  },
+  {
+    "question": "What is Prakriti in Ayurveda?",
+    "answer": "Prakriti in Ayurveda refers to an individual's unique constitution or body type, determined at conception. It represents the natural proportion of the three doshas (Vata, Pitta, Kapha) in a person and remains constant throughout life.",
+    "context": "Prakriti in Ayurveda refers to an individual's unique constitution or body type, determined at conception. It represents the natural proportion of the three doshas (Vata, Pitta, Kapha) in a person and remains constant throughout life. Understanding one's Prakriti is fundamental to Ayurvedic treatment, as it guides appropriate lifestyle, diet, and therapeutic interventions."
+  },
+  {
+    "question": "What is Vikriti?",
+    "answer": "Vikriti is the current state of imbalance in the doshas, which differs from one's natural constitution (Prakriti). It represents the pathological changes or deviations from the balanced state due to lifestyle, diet, environment, or emotional factors.",
+    "context": "Vikriti is the current state of imbalance in the doshas, which differs from one's natural constitution (Prakriti). It represents the pathological changes or deviations from the balanced state due to lifestyle, diet, environment, or emotional factors. Ayurvedic treatment aims to identify the Vikriti and restore balance by bringing the individual back to their Prakriti state."
+  }
+]

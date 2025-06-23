@@ -38,3 +38,15 @@ build/
 
 # Hugging Face cache
 ~/.cache/huggingface
+
+
+
+
+*.pyc
+*.pyo
+*.pyd
+*.parquet
+*.ipynb_checkpoints
+.DS_Store
+.env
+venv/

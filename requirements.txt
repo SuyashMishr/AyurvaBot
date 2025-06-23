@@ -10,3 +10,4 @@ requests>=2.25.0
 scikit-learn>=1.0.0
 pandas>=1.0.0
 datasets>=2.10.0
+huggingface_hub>=0.16.0

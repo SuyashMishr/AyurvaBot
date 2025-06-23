@@ -1,0 +1,32 @@
+# Ignore virtual environments
+venv/
+.venv/
+env/
+ENV/
+venv-local/
+
+# Python cache and metadata
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and large files
+*.log
+*.csv
+*.json
+*.parquet
+*.pkl
+*.pickle
+
+# Jupyter notebooks (optional)
+*.ipynb
+
+# System and IDE files
+.DS_Store
+.vscode/
+.idea/
+
+# pyarrow test files accidentally bundled via pip
+**/site-packages/pyarrow/tests/
+**/tests/
+

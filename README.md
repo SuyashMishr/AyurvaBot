@@ -1,5 +1,5 @@
 ---
-title: AyurvaBot - RAG-Powered Ayurvedic Assistant
+title: AyurvaBotRAG
 emoji: 🌿
 colorFrom: green
 colorTo: blue

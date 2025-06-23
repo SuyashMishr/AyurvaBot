@@ -1,0 +1,17 @@
+# Ignore virtual environments
+venv/
+.venv/
+env/
+venv-local/
+
+# Ignore test data and large files
+**/pyarrow/tests/data/**
+*.parquet
+*.pkl
+*.pt
+*.onnx
+*.h5
+*.zip
+*.tar.*
+.DS_Store
+

@@ -22,7 +22,13 @@ class Config:
         self.MAX_CONTEXT_LENGTH = 1024   # Increase context length
         
         # Dataset path for Ayurveda dataset
-        self.DATASET_PATH = "/Users/suyashmacair/Downloads/Ayurveda Dataset"
+        # Use local path if available, otherwise use processed files
+        local_dataset_path = "/Users/suyashmacair/Downloads/Ayurveda Dataset"
+        if os.path.exists(local_dataset_path):
+            self.DATASET_PATH = local_dataset_path
+        else:
+            # For Hugging Face Spaces, use processed files
+            self.DATASET_PATH = None
         
         # Output directory for processed data and models
         self.OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")

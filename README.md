@@ -1,3 +1,14 @@
+---
+title: AyurvaBotRAG
+emoji: 🌿
+colorFrom: green
+colorTo: blue
+sdk: gradio
+sdk_version: 4.0.0
+app_file: app.py
+pinned: false
+license: mit
+---
 # Enhanced AyurvaBot
 
 An intelligent Ayurvedic medicine assistant using fine-tuned DistilBERT with FAISS vector search and web-enhanced RAG (Retrieval Augmented Generation).

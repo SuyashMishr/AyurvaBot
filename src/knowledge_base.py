@@ -6,59 +6,91 @@ Contains all Ayurvedic knowledge chunks and management functions.
 import os
 import json
 import pandas as pd
+from typing import List, Dict, Any
+
+from .chunking import semantic_chunk
+from .entity_extractor import EntityExtractor
+from .dataset_ingestion import ingest_dataset
+
 
 class AyurvedaKnowledgeBase:
     """
     Class to manage Ayurvedic knowledge base for RAG system.
     """
     
-    def __init__(self):
-        self.knowledge_chunks = []
-        self.document_chunks = []
+    def __init__(self, config=None):
+        self.config = config
+        self.knowledge_chunks: List[str] = []
+        self.document_chunks: List[Dict[str, Any]] = []
+        use_spacy = False
+        max_chars = 4000
+        if config is not None:
+            use_spacy = getattr(config, 'ENABLE_SPACY_NER', False)
+            max_chars = getattr(config, 'NER_MAX_CHARS', 4000)
+        self.entity_extractor = EntityExtractor(use_spacy=use_spacy, max_chars=max_chars)
+        if not use_spacy:
+            # Force disable heavy model just in case
+            self.entity_extractor.model = None
         
-    def load_knowledge_chunks(self):
+    def load_knowledge_chunks(self, use_csv: bool = False, use_synthetic_json: bool = True, config: Any | None = None):
         """
         Load comprehensive Ayurvedic knowledge chunks from multiple sources.
         """
         all_texts = []
         
-        # Load from CSV dataset
-        try:
-            csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output', 'ayurveda_documents.csv')
-            if os.path.exists(csv_path):
-                df = pd.read_csv(csv_path)
-                for _, row in df.iterrows():
-                    all_texts.append({
-                        'text': row['content'],
-                        'source': row['source'],
-                        'type': 'csv_dataset'
-                    })
-                print(f"✅ Loaded {len(df)} chunks from CSV dataset")
-        except Exception as e:
-            print(f"⚠️ Could not load CSV dataset: {e}")
-        
-        # Load from JSON dataset
-        try:
-            json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output', 'synthetic_ayurveda_dataset.json')
-            if os.path.exists(json_path):
-                with open(json_path, 'r', encoding='utf-8') as f:
-                    json_data = json.load(f)
-                for item in json_data:
-                    # Add both question-answer pairs and context
-                    all_texts.append({
-                        'text': f"Q: {item['question']} A: {item['answer']}",
-                        'source': 'synthetic_dataset',
-                        'type': 'qa_pair'
-                    })
-                    if 'context' in item and item['context']:
+        # Optionally load from old CSV (disabled by default as per user request)
+        if use_csv:
+            try:
+                csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output', 'ayurveda_documents.csv')
+                if os.path.exists(csv_path):
+                    df = pd.read_csv(csv_path)
+                    for _, row in df.iterrows():
                         all_texts.append({
-                            'text': item['context'],
-                            'source': 'synthetic_dataset',
-                            'type': 'context'
+                            'text': row['content'],
+                            'source': row['source'],
+                            'type': 'csv_dataset'
                         })
-                print(f"✅ Loaded {len(json_data)} Q&A pairs from JSON dataset")
-        except Exception as e:
-            print(f"⚠️ Could not load JSON dataset: {e}")
+                    print(f"✅ Loaded {len(df)} chunks from CSV dataset")
+            except Exception as e:
+                print(f"⚠️ Could not load CSV dataset: {e}")
+        
+        # Load from synthetic JSON dataset (optional)
+        if use_synthetic_json:
+            try:
+                json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output', 'synthetic_ayurveda_dataset.json')
+                if os.path.exists(json_path):
+                    with open(json_path, 'r', encoding='utf-8') as f:
+                        json_data = json.load(f)
+                    for item in json_data:
+                        all_texts.append({
+                            'text': f"Q: {item['question']} A: {item['answer']}",
+                            'source': 'synthetic_dataset',
+                            'type': 'qa_pair'
+                        })
+                        if 'context' in item and item['context']:
+                            all_texts.append({
+                                'text': item['context'],
+                                'source': 'synthetic_dataset',
+                                'type': 'context'
+                            })
+                    print(f"✅ Loaded {len(json_data)} Q&A pairs from JSON dataset")
+            except Exception as e:
+                print(f"⚠️ Could not load JSON dataset: {e}")
+
+        # Ingest primary Ayurveda dataset directory (PDF/TXT) per user requirement
+        if config and getattr(config, 'DATASET_PATH', None):
+            try:
+                dataset_docs = ingest_dataset(
+                    dataset_path=config.DATASET_PATH,
+                    cache_dir=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'output'),
+                    max_pages=config.MAX_PAGES_PER_PDF,
+                    min_chars=config.MIN_CHARS_DOCUMENT,
+                    max_files=getattr(config, 'MAX_INGEST_FILES', None),
+                )
+                all_texts.extend(dataset_docs)
+                print(f"✅ Added {len(dataset_docs)} documents from primary dataset")
+            except Exception as e:
+                print(f"⚠️ Dataset ingestion failed: {e}")
         
         # Add curated knowledge chunks for comprehensive coverage
         curated_texts = [
@@ -180,21 +212,79 @@ class AyurvedaKnowledgeBase:
                 'type': 'curated'
             })
         
-        # Create document chunks for RAG
+        # Advanced chunking: break longer texts into semantic chunks, keep short ones as-is
         self.document_chunks = []
-        for i, text_data in enumerate(all_texts):
-            chunk = {
-                'id': i,
-                'text': text_data['text'],
-                'source': text_data['source'],
-                'type': text_data['type'],
-                'topic': self._extract_topic_from_text(text_data['text'])
-            }
-            self.document_chunks.append(chunk)
-        
+        idx = 0
+        for text_data in all_texts:
+            raw_text = text_data['text']
+            # decide if we chunk (heuristic: > 220 words)
+            words = raw_text.split()
+            if len(words) > 220:
+                sem_chunks = semantic_chunk(raw_text)
+                for ch in sem_chunks:
+                    entities = self.entity_extractor.extract(ch['text'])
+                    chunk = {
+                        'id': idx,
+                        'text': ch['text'],
+                        'summary': ch.get('summary', ch['text'][:160]),
+                        'entities': entities,
+                        'source': text_data['source'],
+                        'type': text_data['type'],
+                        'topic': self._extract_topic_from_text(ch['text'])
+                    }
+                    self.document_chunks.append(chunk)
+                    idx += 1
+            else:
+                entities = self.entity_extractor.extract(raw_text)
+                self.document_chunks.append({
+                    'id': idx,
+                    'text': raw_text,
+                    'summary': raw_text[:160],
+                    'entities': entities,
+                    'source': text_data['source'],
+                    'type': text_data['type'],
+                    'topic': self._extract_topic_from_text(raw_text)
+                })
+                idx += 1
+        # finalize knowledge chunks list
+        self.knowledge_chunks = [chunk['text'] for chunk in self.document_chunks]
+        # Deduplicate & limit
+        self._deduplicate_and_limit()
         self.knowledge_chunks = [chunk['text'] for chunk in self.document_chunks]
         print(f"✅ Total knowledge chunks loaded: {len(self.knowledge_chunks)}")
+        # Compatibility line the user expects (explicit loaded line)
+        print(f"✅ Loaded {len(self.knowledge_chunks)} knowledge chunks")
+        print(f"Docs: {len(self.knowledge_chunks)}")
         return len(self.knowledge_chunks)
+
+    def _deduplicate_and_limit(self):
+        if not self.document_chunks:
+            return
+        if not self.config:
+            return
+        # Skip any limiting/dedup if UNLIMITED_INGEST is enabled
+        if getattr(self.config, 'UNLIMITED_INGEST', False):
+            return
+        max_chunks = getattr(self.config, 'MAX_TOTAL_CHUNKS', None)
+        min_chars = getattr(self.config, 'DEDUPE_MIN_CHARS', 100)
+        hash_len = getattr(self.config, 'DEDUPE_HASH_LEN', 300)
+        seen = set()
+        filtered = []
+        for ch in self.document_chunks:
+            txt = ch.get('text', '')
+            if len(txt) < min_chars:
+                continue
+            norm = ' '.join(txt.lower().split())[:hash_len]
+            if norm in seen:
+                continue
+            seen.add(norm)
+            filtered.append(ch)
+            if max_chunks and len(filtered) >= max_chunks:
+                break
+        removed = len(self.document_chunks) - len(filtered)
+        if removed > 0:
+            print(f"ℹ️ Chunk reduction: removed {removed} duplicates/overflow (kept {len(filtered)})")
+        self.document_chunks = filtered
     
     def _extract_topic_from_text(self, text):
         """
